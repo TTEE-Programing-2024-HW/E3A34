@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define ROWS 10 
+#define COLS 9 
+
+void initialize_seating_chart(char chart[ROWS][COLS]) {
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            chart[i][j] = 'O';
+        }
+    }
+}
+
+
+void display_seating_chart(char chart[ROWS][COLS]) {
+    printf("座位表\n");/******/
+    for (int i = 9; i>0; i--) {
+        printf("%d ", i);
+        for (int j = 0; j < COLS; j++) {
+            printf("%c ", chart[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+
+int reserve_seat(char chart[ROWS][COLS], int row, int col) {
+    if (chart[row][col] == 'O') {
+        chart[row][col] = 'X';
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+void random_reserve_seats(char chart[ROWS][COLS], int num_seats) {
+    int total_seats = ROWS * COLS;
+    if (num_seats > total_seats) {
+        printf("佔位數量超過可用座位數\n");
+        return;
+    }
+
+    int reserved = 0;
+    while (reserved < num_seats) {
+        int row = rand() % ROWS;
+        int col = rand() % COLS;
+        if (reserve_seat(chart, row, col)) {
+            reserved++;
+        }
+    }
+}
+
+int main() {
+    char seating_chart[ROWS][COLS];
+    int row, col;
+
+    srand(time(NULL));
+
+    initialize_seating_chart(seating_chart);
+    random_reserve_seats(seating_chart, 10);
+
+    printf("初始座位表 (隨機佔位10個)\n");
+    display_seating_chart(seating_chart);
+
+    while (1) {
+        printf("請輸入要占位的行號(0-%d): ", ROWS - 1);
+        if (scanf("%d", &row) != 1 || row < 0 || row >= ROWS) {
+            printf("輸入無效或超過範圍\n");
+            while (getchar() != '\n'); //重新輸入範圍 
+            continue;
+        }
+
+        printf("輸入想要的列號(0-%d): ", COLS - 1);
+        if (scanf("%d", &col) != 1 || col < 0 || col >= COLS) {
+            printf("輸入無效或超過範圍\n");
+            while (getchar() != '\n'); // 皜征頛詨蝺抵??
+            continue;
+        }
+
+        if (reserve_seat(seating_chart, row, col)) {
+            //printf("座位(%d,%d)佔位成\n功", row, col);
+            printf("座位(%d,%d)佔位成功 \n",row,col);
+        } else {
+            printf("座位(%d,%d)已被占用，請選擇其他座位\n", row, col);
+        }
+
+        display_seating_chart(seating_chart);
+
+        char cont;
+        printf("是否繼續佔位(y/n): ");
+        scanf(" %c", &cont);
+        if (cont != 'y' && cont != 'Y') {
+            break;
+        }
+    }
+
+    return 0;
+}
