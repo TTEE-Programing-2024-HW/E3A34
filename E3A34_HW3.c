@@ -1,4 +1,4 @@
-#include <stdio.h>//將stdio.h這個檔案含括進來 
+#include <stdio.h> 
 #include <stdlib.h>
 #include <time.h>
 
@@ -15,11 +15,11 @@ void initialize_seating_chart(char chart[ROWS][COLS]) {
             chart[i][j] = '_';
         }
     }
-}
+}//seat logic
 
 
 void display_seating_chart(char chart[ROWS][COLS]) {
-    printf("座位表\n");/******/
+    printf("seats\n");
     printf("\\ 1 2 3 4 5 6 7 8 9\n");
     for (int i = 9; i>0; i--) {
         printf("%d ", i);
@@ -29,7 +29,7 @@ void display_seating_chart(char chart[ROWS][COLS]) {
         printf("\n");
     }
     printf("\n");
-}
+}//pcture
 
 
 int reserve_seat(char chart[ROWS][COLS], int row, int col) {
@@ -44,7 +44,7 @@ int reserve_seat(char chart[ROWS][COLS], int row, int col) {
 void random_reserve_seats(char chart[ROWS][COLS], int num_seats) {
     int total_seats = ROWS * COLS;
     if (num_seats > total_seats) {
-        printf("佔位數量超過可用座位數\n");
+        printf("The number of reserved seats exceeds the available seats\n");
         return;
     }
 
@@ -82,7 +82,7 @@ int main(void)
 		printf("|         b.Arrange for you         |\n");
 		printf("|         c.Choose by yourself      |\n");
 		printf("|         d.exit                    |\n");
-		printf("|-----------------------------------|\n");//主選單
+		printf("|-----------------------------------|\n");//menu
 		
 		printf("Please enter the menu number\n");	
 		fflush(stdin); 
@@ -97,14 +97,14 @@ int main(void)
 				
 		    	char seating_chart[ROWS][COLS];
     			int row, col;
-				//chart [row][col];
+				
     			srand(time(NULL));
 
     			initialize_seating_chart(seating_chart);
     			random_reserve_seats(seating_chart, 10);
 
-    			printf("初始座位表 (隨機佔位10個)\n");
-    			display_seating_chart(seating_chart);//呼叫 case_a副程式 
+    			printf("Initial seating chart (10 random reservations)\n");
+    			display_seating_chart(seating_chart); 
 		    	
 				system("pause");
 				
@@ -126,7 +126,7 @@ int main(void)
 				fflush(stdin);
 				system("cls");
 				
-				//case_c(n);
+				
 				
 				system("pause");
 				
