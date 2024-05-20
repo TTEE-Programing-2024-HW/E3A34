@@ -238,7 +238,7 @@ void style(void)//personal picture
 	printf("   e e   \n");
 	printf("  e   e  \n");
 	printf(" eeeeeee \n");
-	printf("e       e\n");
+	printf("e       e\n"); 
 	printf("\n");
 	printf("   eeeee             eeeeee      \n");
 	printf(" eeeeeeeee          eeeeeee      \n");
@@ -251,5 +251,7 @@ void style(void)//personal picture
 		
 			
 }
-
-
+/*心得: 
+    此次作業相當困難，我認為邏輯非常複雜，我在嘗試寫程式的過程中執行失敗很多次，再加上第一次操作git hub，
+	也加深了我對於軟體的認識，雖還是沒能完整此次作業，
+	但也盡力完成作業，過程也有學習到課本內容，沒能完成深感遺憾。 */
