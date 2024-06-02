@@ -129,9 +129,34 @@ int main(void)
 			case 'c':
 				fflush(stdin);
 				system("cls");
+				{
+					char search_name[50];
 				
+    				printf("search name: ");
+    				scanf("%s", search_name);
+
+				}
 				
-				
+    			char search_name[50];
+    			
+    			for (int i = 0; i < student_count; i++) 
+				{
+        			if (strcmp(students[i].name, search_name) == 0) //if founding student print information of student //from lab 10  
+					{
+						
+            		printf("name: %s, student number: %d, math: %d, physics: %d, english: %d, average: %.1f\n",
+                    students[i].name, students[i].id, students[i].math, students[i].phy, students[i].eng, students[i].average);
+                   
+            		break;
+            		
+        			}
+        			else
+        			{
+        			printf("It doesn't exist \n");
+    				}
+        				
+    			}
+
 				system("pause");
 				
 				break;
