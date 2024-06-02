@@ -15,7 +15,7 @@ struct Student
     float average;
 }; 
 
-struct Student students[10]; // student maximum is 10  
+struct Student students[10]; // student maximum is 10 
 int student_count = 0;
 
 
@@ -114,7 +114,11 @@ int main(void)
 			case 'b':
 				fflush(stdin);
 				system("cls");
-				
+				for (int i = 0; i < student_count; i++) 
+				{
+        			printf("name: %s, student number: %d, math: %d, physics: %d, english: %d, average: %.1f\n",
+               		students[i].name, students[i].id, students[i].math, students[i].phy, students[i].eng, students[i].average);//all student information
+    			}
 				
 				
 				system("pause");
