@@ -2,12 +2,21 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-
 void style(void); 
 void code(void);
 
+struct Student 
+{
+    char name[50];
+    int id;
+    int math;
+    int phy;
+    int eng;
+    float average;
+}; 
 
+struct Student students[10]; // student maximum is 10  
+int student_count = 0;
 
 
 
@@ -30,7 +39,7 @@ int main(void)
 		printf(" ___________________________________\n");
 		printf("|---------[Grade System]------------|\n");
 		printf("|       a.Enter student grades      |\n");
-		printf("|       b.Display student grade s   |\n");
+		printf("|       b.Display student grades    |\n");
 		printf("|       c.Search for student grades |\n");
 		printf("|       d.Grade ranking             |\n");
 		printf("|       e.Exit system               |\n");
@@ -47,9 +56,56 @@ int main(void)
 				fflush(stdin);
 				system("cls");
 				
+				printf("How many students ? (5~10): ");
+    			while (scanf("%d", &student_count) != 1 || student_count < 5 || student_count > 10) 
+				{
+        				printf("error，Please enter the number between 5~10 : ");
+        				fflush(stdin);
+    			}
+
+    			for (int i = 0; i < student_count; i++) 
+				{
+        			printf(" Please enter the name of student %d : ", i + 1);
+        			while (scanf("%s", students[i].name) != 1) 
+					{
+            			printf("error，re-enter the name of student %d : ", i + 1);
+            			fflush(stdin);
+        			}
+
+        			printf("Please enter the student number of the %d student(6 number): ", i + 1);
+        			while (scanf("%d", &students[i].id) != 1 || students[i].id < 100000 || students[i].id > 999999) //it have to enter from 100000 to 999999
+					{
+            			printf("error，re-enter the student number of the %d student(6 number): ", i + 1);
+            			fflush(stdin);
+        			}
+
+        			printf("no. %d's math grade (0~100): ", i + 1);
+        			while (scanf("%d", &students[i].math) != 1 || students[i].math < 0 || students[i].math > 100) 
+					{
+            			printf("error,re-enter no. %d's math grade (0~100): ", i + 1);
+            			fflush(stdin);
+        			}
+
+        			printf("no. %d's physics grade (0~100): ", i + 1);
+        			while (scanf("%d", &students[i].phy) != 1 || students[i].phy < 0 || students[i].phy > 100) 
+					{
+            			printf("error,re-enter no. %d's physics grade (0~100): ", i + 1);
+            			fflush(stdin);
+        			}
+
+        			printf(" no. %d's english grade(0~100): ", i + 1);
+        			while (scanf("%d", &students[i].eng) != 1 || students[i].eng < 0 || students[i].eng > 100) 
+					{
+            			printf("error,re-enter no. %d's english grade (0~100): ", i + 1);
+            			fflush(stdin);
+        			}
+
+        		
+        			students[i].average = (students[i].math + students[i].phy + students[i].eng) / 3.0;	// average
+    			}
 		    	
 		    	
-		    	
+		    	 
 				system("pause");
 				
 				break;
