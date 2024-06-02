@@ -23,7 +23,7 @@ int student_count = 0;
 
 int main(void)
 {
-	//srand(time(NULL));
+
 	
 	
 	style();
@@ -34,7 +34,7 @@ int main(void)
 		
 		char a,o;
 	
-		system("CLS");
+		system("CLS");// Clear the screen
 		
 		printf(" ___________________________________\n");
 		printf("|---------[Grade System]------------|\n");
@@ -51,12 +51,12 @@ int main(void)
 		
 		switch(a)//choose the menu number
 		{
-			case 'A':
+			case 'A'://seting student data
 			case 'a':
-				fflush(stdin);
-				system("cls");
+				fflush(stdin);//Clean data
+				system("cls");// Clear the screen
 				
-				printf("How many students ? (5~10): ");
+				printf("How many students ? (5~10): ");//for how many
     			while (scanf("%d", &student_count) != 1 || student_count < 5 || student_count > 10) 
 				{
         				printf("error，Please enter the number between 5~10 : ");
@@ -65,35 +65,35 @@ int main(void)
 
     			for (int i = 0; i < student_count; i++) 
 				{
-        			printf(" Please enter the name of student %d : ", i + 1);
+        			printf(" Please enter the name of student %d : ", i + 1);//for name
         			while (scanf("%s", students[i].name) != 1) 
 					{
             			printf("error，re-enter the name of student %d : ", i + 1);
             			fflush(stdin);
         			}
 
-        			printf("Please enter the student number of the %d student(6 number): ", i + 1);
+        			printf("Please enter the student number of the %d student(6 number): ", i + 1);// for student number
         			while (scanf("%d", &students[i].id) != 1 || students[i].id < 100000 || students[i].id > 999999) //it have to enter from 100000 to 999999
 					{
             			printf("error，re-enter the student number of the %d student(6 number): ", i + 1);
             			fflush(stdin);
         			}
 
-        			printf("no. %d's math grade (0~100): ", i + 1);
+        			printf("no. %d's math grade (0~100): ", i + 1);//for math
         			while (scanf("%d", &students[i].math) != 1 || students[i].math < 0 || students[i].math > 100) 
 					{
             			printf("error,re-enter no. %d's math grade (0~100): ", i + 1);
             			fflush(stdin);
         			}
 
-        			printf("no. %d's physics grade (0~100): ", i + 1);
+        			printf("no. %d's physics grade (0~100): ", i + 1);//for phy
         			while (scanf("%d", &students[i].phy) != 1 || students[i].phy < 0 || students[i].phy > 100) 
 					{
             			printf("error,re-enter no. %d's physics grade (0~100): ", i + 1);
             			fflush(stdin);
         			}
 
-        			printf(" no. %d's english grade(0~100): ", i + 1);
+        			printf(" no. %d's english grade(0~100): ", i + 1);//for eng
         			while (scanf("%d", &students[i].eng) != 1 || students[i].eng < 0 || students[i].eng > 100) 
 					{
             			printf("error,re-enter no. %d's english grade (0~100): ", i + 1);
@@ -101,19 +101,19 @@ int main(void)
         			}
 
         		
-        			students[i].average = (students[i].math + students[i].phy + students[i].eng) / 3.0;	// average
+        			students[i].average = (students[i].math + students[i].phy + students[i].eng) / 3.0;	//calculate average
     			}
 		    	
 		    	
 		    	 
-				system("pause");
+				system("pause");//moniter pause
 				
 				break;
 				
 			case 'B':
 			case 'b':
-				fflush(stdin);
-				system("cls");
+				fflush(stdin);//Clean data
+				system("cls");// Clear the screen
 				for (int i = 0; i < student_count; i++) 
 				{
         			printf("name: %s, student number: %d, math: %d, physics: %d, english: %d, average: %.1f\n",
@@ -121,14 +121,14 @@ int main(void)
     			}
 				
 				
-				system("pause");
+				system("pause");//moniter pause
 				
 				break;
 				
 			case 'C':
 			case 'c':
-				fflush(stdin);
-				system("cls");
+				fflush(stdin);//Clean data
+				system("cls");// Clear the screen
 				{
 					char search_name[50];
 				
@@ -157,24 +157,43 @@ int main(void)
         				
     			}
 
-				system("pause");
+				system("pause");//moniter pause
 				
 				break;
 			
 			case 'D':
 			case 'd':
-				fflush(stdin);
-				system("cls");
+				fflush(stdin);//Clean data
+				system("cls");// Clear the screen
 				
+				 for (int i = 0; i < student_count - 1; i++)//Bubble Sort
+				{
+        			for (int j = 0; j < student_count - 1 - i; j++) 
+					{
+            			if (students[j].average < students[j + 1].average)
+						{
+                			struct Student temp = students[j];//ratio size
+                			students[j] = students[j + 1];
+                			students[j + 1] = temp;
+            			}
+        			}
+    			}
+
+    			for (int i = 0; i < student_count; i++) //Print student information order by average score
+				{
 				
-				
-				system("pause");
+        		printf("name: %s, student number: %d , average: %.1f\n",
+				students[i].name, students[i].id, students[i].average);
+        		
+    			}
+    			
+				system("pause");//moniter pause
 				
 				break;
-			case 'E':
-			case 'e':
+			case 'E'://Clean data
+			case 'e': //jump out system
 			fflush(stdin);
-				system("cls");
+				system("cls");// Clear the screen
 				
 				printf("Continue? (Y/N)\n start again\n");
 				while(scanf("%c",&o))
@@ -195,7 +214,7 @@ int main(void)
 						printf("Please re-enter\n\a");
 					} 
 				}
-				system("pause");
+				system("pause");//moniter pause
 				break;
 				
 			default:
